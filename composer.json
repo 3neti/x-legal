@@ -1,0 +1,40 @@
+{
+  "name": "lbhurtado/x-legal",
+  "description": "Legal architecture and regulatory traceability package for x-change Treasury and Settlement systems.",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "laravel",
+    "legal",
+    "regulatory",
+    "traceability",
+    "treasury",
+    "settlement"
+  ],
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "require": {
+    "php": "^8.2",
+    "illuminate/support": "^11.0|^12.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "LBHurtado\\XLegal\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "LBHurtado\\XLegal\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "LBHurtado\\XLegal\\XLegalServiceProvider"
+      ]
+    }
+  }
+}
