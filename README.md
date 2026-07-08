@@ -118,6 +118,9 @@ The documentation is organized as a legal architecture library:
 - [Implementation plan](docs/architecture/IMPLEMENTATION_PLAN.md): phased plan for
   building the legal knowledge system.
 - [Grammar](docs/grammar/LEGAL_GRAMMAR.md): canonical concept relationships.
+- [Rule of Translation](docs/grammar/RULE_OF_TRANSLATION.md): discipline for moving
+  from source availability to authority, applicability, architecture, and
+  implementation.
 - [Authorities](docs/authorities/LEGAL_AUTHORITY_REGISTER.md): structured register
   for future legal authorities.
 - [Characterization](docs/characterization/LEGAL_CHARACTERIZATION.md): candidate
@@ -126,8 +129,12 @@ The documentation is organized as a legal architecture library:
   consequences if candidate theories apply.
 - [Traceability matrix](docs/traceability/REGULATORY_TRACEABILITY_MATRIX.md):
   design objective for mapping law, architecture, code, tests, and audit evidence.
+- [Knowledge](docs/knowledge/README.md): institutional legal memory and living
+  position-paper system.
 - [Research](docs/research/OPEN_QUESTIONS.md): open questions and adverse analysis.
 - [Decisions](docs/decisions/README.md): Legal Decision Records.
+- [Hydration backlog](docs/HYDRATION_BACKLOG.md): documentation maturity, hydration
+  priorities, and missing Knowledge Articles.
 
 The work begins here: name the concepts, trace the assumptions, preserve the
 questions, and let future code inherit discipline instead of ambiguity.

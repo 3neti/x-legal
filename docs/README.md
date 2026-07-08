@@ -28,6 +28,8 @@ without collapsing into one crowded folder.
 - [LEGAL_GRAMMAR.md](./grammar/LEGAL_GRAMMAR.md): canonical relationship grammar for
   Principal, Treasury Mandate, Client Funds, Treasury Position, Lien, Settlement
   Instruction, Pay Code, Journal, and Legal Trace.
+- [RULE_OF_TRANSLATION.md](./grammar/RULE_OF_TRANSLATION.md): discipline for moving
+  from availability to authority, applicability, architecture, and implementation.
 
 ## Authorities
 
@@ -55,6 +57,21 @@ without collapsing into one crowded folder.
   design objective for connecting business requirements, authorities, invariants,
   packages, classes, methods, tests, and audit evidence.
 
+## Knowledge
+
+- [knowledge/README.md](./knowledge/README.md): institutional legal knowledge system
+  for preserving reasoning, not merely answers.
+- [KNOWLEDGE_SYSTEM.md](./knowledge/KNOWLEDGE_SYSTEM.md): philosophy of legal memory,
+  institutional reasoning, traceability, and versioned understanding.
+- [KNOWLEDGE_GOVERNANCE.md](./knowledge/KNOWLEDGE_GOVERNANCE.md): lifecycle for
+  Knowledge Articles as living legal position papers.
+- [KNOWLEDGE_TEMPLATE.md](./knowledge/KNOWLEDGE_TEMPLATE.md): canonical format for
+  future Knowledge Articles.
+- [FAQ_INDEX.md](./knowledge/FAQ_INDEX.md): question-oriented index for future
+  Knowledge Articles.
+- [HYDRATION_BACKLOG.md](./HYDRATION_BACKLOG.md): documentation maturity and hydration
+  priority tracking.
+
 ## Research
 
 - [ADVERSE_ARGUMENTS.md](./research/ADVERSE_ARGUMENTS.md): skeptical regulatory and
@@ -68,8 +85,15 @@ without collapsing into one crowded folder.
 - [0001-treasury-over-wallet.md](./decisions/0001-treasury-over-wallet.md):
   proposed decision to prefer Treasury terminology over wallet terminology.
 
-## Maintenance
+## Governance
 
 Keep this library constitutional rather than checklist-driven. New documents should
 preserve legal uncertainty honestly, distinguish hypotheses from reviewed
 positions, and link back to traceability wherever possible.
+
+Every substantive documentation change shall include a review of the Knowledge
+System. This does not require changing the Knowledge System every time; it requires
+checking whether the change affects an existing or future Knowledge Article,
+question index, legal position, traceability link, or revision history.
+
+The hydration backlog is a standing maintenance artifact for this purpose.
