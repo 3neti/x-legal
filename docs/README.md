@@ -35,6 +35,8 @@ without collapsing into one crowded folder.
 
 - [LEGAL_AUTHORITY_REGISTER.md](./authorities/LEGAL_AUTHORITY_REGISTER.md):
   disciplined format for registering future authorities.
+- [RESEARCH_WORKFLOW.md](./authorities/RESEARCH_WORKFLOW.md): methodology for how
+  legal authorities become architectural understanding.
 - [SOURCE_EVALUATION_PROTOCOL.md](./authorities/SOURCE_EVALUATION_PROTOCOL.md):
   methodology for evaluating sources before they shape architecture.
 - [bsp/](./authorities/bsp/README.md): future BSP authorities and guidance.
