@@ -14,7 +14,7 @@ return [
     ],
     'profiles' => [
         'treasury-settlement-ph-v1' => [
-            'version' => '2026-07-24.1',
+            'version' => '2026-07-25.1',
             'status' => 'under_analysis',
             'jurisdiction' => 'PH',
             'effective_at' => null,
@@ -27,7 +27,7 @@ return [
             'vocabulary' => [
                 'operator' => [
                     'internal_balance' => [
-                        'label' => 'Internal Balance',
+                        'label' => 'Client Funds',
                         'description' => 'Recognized client funds attributed to this account across its provider positions.',
                     ],
                     'outstanding_pay_codes' => [

@@ -67,7 +67,7 @@ final class LegalRuntimeContractsTest extends TestCase
 
         $this->assertSame('Treasury Position', $term->label);
         $this->assertSame('operator', $term->audience);
-        $this->assertSame('2026-07-24.1', $term->profileVersion);
+        $this->assertSame('2026-07-25.1', $term->profileVersion);
         $this->assertFalse($term->approvedForPublicDisplay);
         $this->assertSame(['legal-trace:ph-working-model'], $term->traceReferences);
     }
@@ -84,7 +84,7 @@ final class LegalRuntimeContractsTest extends TestCase
         $resolver = new ConfiguredLegalVocabularyResolver($config['profiles']);
 
         $terms = [
-            'internal_balance' => 'Internal Balance',
+            'internal_balance' => 'Client Funds',
             'outstanding_pay_codes' => 'Outstanding Pay Codes',
             'issuance_capacity' => 'Issuance Capacity',
             'account_funding' => 'Account Funding',
@@ -208,7 +208,7 @@ final class LegalRuntimeContractsTest extends TestCase
     {
         return [
             'treasury-settlement-ph-v1' => [
-                'version' => '2026-07-24.1',
+                'version' => '2026-07-25.1',
                 'status' => 'under_analysis',
                 'jurisdiction' => 'PH',
                 'effective_at' => null,
