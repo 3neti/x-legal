@@ -24,12 +24,14 @@ class XLegalPackageTest extends TestCase
 
     public function test_config_file_is_publishable_shape(): void
     {
-        $config = require dirname(__DIR__, 2) . '/config/x-legal.php';
+        $config = require dirname(__DIR__, 2).'/config/x-legal.php';
 
         $this->assertIsArray($config);
         $this->assertTrue($config['enabled']);
         $this->assertEquals('docs', $config['documents_path']);
         $this->assertEquals('under_analysis', $config['legal_model']['status']);
+        $this->assertArrayHasKey('context', $config);
+        $this->assertArrayHasKey('profiles', $config);
         $this->assertArrayHasKey('traceability', $config);
     }
 
