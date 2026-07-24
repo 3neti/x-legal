@@ -72,6 +72,36 @@ final class LegalRuntimeContractsTest extends TestCase
         $this->assertSame(['legal-trace:ph-working-model'], $term->traceReferences);
     }
 
+    public function test_default_operator_vocabulary_uses_treasury_product_language(): void
+    {
+        /** @var array{profiles: array<string, array<string, mixed>>} $config */
+        $config = require dirname(__DIR__, 2).'/config/x-legal.php';
+        $context = (new ConfiguredJurisdictionContextResolver([
+            'jurisdiction' => 'PH',
+            'legal_entity_reference' => 'entity-ph-001',
+            'profile' => 'treasury-settlement-ph-v1',
+        ]))->resolve();
+        $resolver = new ConfiguredLegalVocabularyResolver($config['profiles']);
+
+        $terms = [
+            'internal_balance' => 'Internal Balance',
+            'outstanding_pay_codes' => 'Outstanding Pay Codes',
+            'issuance_capacity' => 'Issuance Capacity',
+            'account_funding' => 'Account Funding',
+            'reusable_funding_address' => 'Reusable Funding Address',
+            'provider_account' => 'Provider Account',
+            'exact_funding_intent' => 'Exact Funding Intent',
+        ];
+
+        foreach ($terms as $key => $label) {
+            $term = $resolver->resolve($key, $context);
+
+            $this->assertSame($label, $term->label);
+            $this->assertNotSame('', $term->description);
+            $this->assertFalse($term->approvedForPublicDisplay);
+        }
+    }
+
     public function test_draft_profiles_are_advisory_even_when_they_contain_an_allowed_decision(): void
     {
         $profiles = $this->profiles();
