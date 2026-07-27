@@ -14,7 +14,7 @@ return [
     ],
     'profiles' => [
         'treasury-settlement-ph-v1' => [
-            'version' => '2026-07-25.1',
+            'version' => '2026-07-27.1',
             'status' => 'under_analysis',
             'jurisdiction' => 'PH',
             'effective_at' => null,
@@ -45,6 +45,26 @@ return [
                     'reusable_funding_address' => [
                         'label' => 'Reusable Funding Address',
                         'description' => 'A persistent provider destination used to attribute verified incoming funds to an account.',
+                    ],
+                    'funding_qr_ph' => [
+                        'label' => 'QR Ph',
+                        'description' => 'A provider-verified QR Ph funding method attributed to an account.',
+                    ],
+                    'funding_bank_transfer' => [
+                        'label' => 'Bank Transfer',
+                        'description' => 'A provider-verified transfer made to configured banking instructions.',
+                    ],
+                    'funding_pay_code' => [
+                        'label' => 'Pay Code',
+                        'description' => 'A credential that applies an existing Account Funding settlement instruction.',
+                    ],
+                    'funding_reviewed_value' => [
+                        'label' => 'Reviewed Value',
+                        'description' => 'A request for independently reviewed backing that does not itself recognize Client Funds.',
+                    ],
+                    'funding_activity' => [
+                        'label' => 'Funding Activity',
+                        'description' => 'A normalized lifecycle view of funding instructions, observations, reviews, and recognition.',
                     ],
                     'provider_account' => [
                         'label' => 'Provider Account',

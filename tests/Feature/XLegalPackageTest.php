@@ -35,6 +35,19 @@ class XLegalPackageTest extends TestCase
         $this->assertArrayHasKey('traceability', $config);
     }
 
+    public function test_treasury_profile_defines_account_funding_workspace_vocabulary(): void
+    {
+        $config = require dirname(__DIR__, 2).'/config/x-legal.php';
+        $vocabulary = $config['profiles']['treasury-settlement-ph-v1']['vocabulary']['operator'];
+
+        $this->assertArrayHasKey('account_funding', $vocabulary);
+        $this->assertSame('QR Ph', $vocabulary['funding_qr_ph']['label']);
+        $this->assertSame('Bank Transfer', $vocabulary['funding_bank_transfer']['label']);
+        $this->assertSame('Pay Code', $vocabulary['funding_pay_code']['label']);
+        $this->assertSame('Reviewed Value', $vocabulary['funding_reviewed_value']['label']);
+        $this->assertSame('Funding Activity', $vocabulary['funding_activity']['label']);
+    }
+
     public function test_contracts_exist(): void
     {
         $this->assertTrue(interface_exists(TreasuryMandate::class));
