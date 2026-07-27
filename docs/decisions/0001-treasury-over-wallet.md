@@ -66,6 +66,24 @@ The ecosystem may lose some product-language familiarity. That is acceptable at 
 architecture layer. Product language can be reviewed separately, but it should not
 override the legal grammar.
 
+## Product-Surface Application
+
+Account-facing product surfaces should use **Account**, **Client Funds**,
+**Account Funding**, **Treasury Position**, and **Issuance Capacity**. They should
+not label the user's position as a wallet or describe an increase as a wallet
+top-up.
+
+Funding-method labels may describe the rail or controlled process without implying
+a new stored-value product. The current approved method vocabulary is **QR Ph**,
+**Bank Transfer**, **Pay Code**, and **Reviewed Value**. A consolidated
+**Funding Activity** history may show requests, provider observations, and
+recognized funds, provided it keeps those states distinct and does not present
+provider evidence as an Account credit before recognition.
+
+This vocabulary does not change the legal characterization of the underlying
+activity. It is a disciplined product-language application of the Treasury model
+and remains subject to the human and external-counsel review stated above.
+
 This decision does not establish that the system is not EMI, not OPS, not custody,
 not escrow, or outside any regulatory category. It only establishes the current
 architectural vocabulary direction for analysis.
