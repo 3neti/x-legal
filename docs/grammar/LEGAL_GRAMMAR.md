@@ -142,3 +142,27 @@ The grammar is only useful if implementation can be mapped back to it.
 - Do not use a term merely because it is familiar to users or engineers.
 - Do not hide unresolved legal questions behind product language.
 - Treat each term as a claim about system behavior that must eventually be testable.
+
+## Commercial extension
+
+Commercial activity must remain downstream of explicit authority and separate from
+the Settlement Instruction principal:
+
+```text
+Principal
+-> Treasury Mandate
+-> Client Funds
+-> Settlement Instruction Principal
+-> separately disclosed Instruction Service Charge
+-> Commercial Offering
+-> Commercial Allocation Policy
+-> Provider Cost / Product Revenue / Partner Commission Payable / Commercial Revenue
+-> Settlement / Reversal / Review
+-> Journal
+-> Legal Trace
+```
+
+Only the Instruction Service Charge may enter the Commercial Allocation Policy. A
+Pay Code value, reserved Client Funds, and provider Inventory are not commercial
+allocation bases. Provider Cost Payable and Partner Commission Payable describe
+obligations; neither term proves an external payment occurred.

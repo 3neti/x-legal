@@ -3,10 +3,12 @@
 namespace LBHurtado\XLegal;
 
 use Illuminate\Support\ServiceProvider;
+use LBHurtado\XLegal\Contracts\CommercialLegalConstraintEvaluationContract;
 use LBHurtado\XLegal\Contracts\JurisdictionContextResolverContract;
 use LBHurtado\XLegal\Contracts\LegalConstraintEvaluationContract;
 use LBHurtado\XLegal\Contracts\LegalVocabularyResolverContract;
 use LBHurtado\XLegal\Contracts\TreasuryPolicyProfileResolverContract;
+use LBHurtado\XLegal\Services\AdvisoryCommercialLegalConstraintEvaluator;
 use LBHurtado\XLegal\Services\AdvisoryLegalConstraintEvaluator;
 use LBHurtado\XLegal\Services\ConfiguredJurisdictionContextResolver;
 use LBHurtado\XLegal\Services\ConfiguredLegalVocabularyResolver;
@@ -45,6 +47,13 @@ class XLegalServiceProvider extends ServiceProvider
         $this->app->singleton(
             LegalConstraintEvaluationContract::class,
             fn (): AdvisoryLegalConstraintEvaluator => new AdvisoryLegalConstraintEvaluator(
+                profiles: $this->app->make(TreasuryPolicyProfileResolverContract::class),
+            ),
+        );
+
+        $this->app->singleton(
+            CommercialLegalConstraintEvaluationContract::class,
+            fn (): AdvisoryCommercialLegalConstraintEvaluator => new AdvisoryCommercialLegalConstraintEvaluator(
                 profiles: $this->app->make(TreasuryPolicyProfileResolverContract::class),
             ),
         );

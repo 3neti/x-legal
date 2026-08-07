@@ -3,6 +3,7 @@
 namespace LBHurtado\XLegal\Tests\Feature;
 
 use LBHurtado\XLegal\Contracts\ClientFundsLedger;
+use LBHurtado\XLegal\Contracts\CommercialLegalConstraintEvaluationContract;
 use LBHurtado\XLegal\Contracts\LegalTraceabilityRepository;
 use LBHurtado\XLegal\Contracts\LienRegistry;
 use LBHurtado\XLegal\Contracts\PayCodeInstrument;
@@ -56,6 +57,7 @@ class XLegalPackageTest extends TestCase
         $this->assertTrue(interface_exists(LienRegistry::class));
         $this->assertTrue(interface_exists(PayCodeInstrument::class));
         $this->assertTrue(interface_exists(LegalTraceabilityRepository::class));
+        $this->assertTrue(interface_exists(CommercialLegalConstraintEvaluationContract::class));
     }
 
     public function test_value_objects_are_instantiable(): void

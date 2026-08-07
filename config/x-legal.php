@@ -94,6 +94,38 @@ return [
                         'label' => 'Recognized Client Funds',
                         'description' => 'Client funds recognized only from verified funding evidence.',
                     ],
+                    'instruction_service_charge' => [
+                        'label' => 'Instruction Service Charge',
+                        'description' => 'A separately disclosed charge for issuing and supporting a settlement instruction; it is not Pay Code principal.',
+                    ],
+                    'commercial_offering' => [
+                        'label' => 'Commercial Offering',
+                        'description' => 'An approved combination of a Price List, Waterfall Policy, attribution rules, and legal-policy trace.',
+                    ],
+                    'commercial_waterfall' => [
+                        'label' => 'Waterfall',
+                        'description' => 'The approved allocation policy applied only to an Instruction Service Charge.',
+                    ],
+                    'provider_cost_payable' => [
+                        'label' => 'Provider Cost Payable',
+                        'description' => 'An expected obligation to a provider that remains unpaid until matched to authoritative settlement evidence.',
+                    ],
+                    'product_revenue' => [
+                        'label' => 'Product Revenue',
+                        'description' => 'The portion of an Instruction Service Charge allocated to an identified product under an approved policy.',
+                    ],
+                    'partner_commission_payable' => [
+                        'label' => 'Partner Commission Payable',
+                        'description' => 'An accrued obligation to an eligible attributed partner; allocation does not establish that payment occurred.',
+                    ],
+                    'commercial_revenue' => [
+                        'label' => 'Commercial Revenue',
+                        'description' => 'The residual commercial allocation after approved costs, product revenue, and partner payables.',
+                    ],
+                    'commission_settlement' => [
+                        'label' => 'Commission Settlement',
+                        'description' => 'The controlled discharge of a Partner Commission Payable against authoritative settlement evidence.',
+                    ],
                     'treasury_clearing_position' => [
                         'label' => 'Treasury Clearing Position',
                         'description' => 'A system-controlled position used while value is being attributed.',
@@ -107,6 +139,14 @@ return [
                     'settlement_resource' => [
                         'label' => 'Settlement Resource',
                         'description' => 'An external provider resource against which inventory is observed.',
+                    ],
+                    'commercial_catalog' => [
+                        'label' => 'Commercial Catalog',
+                        'description' => 'The immutable technical Price List snapshot used by a Commercial Offering.',
+                    ],
+                    'commercial_allocation_policy' => [
+                        'label' => 'Commercial Allocation Policy',
+                        'description' => 'The immutable technical policy that conserves an Instruction Service Charge across classified destinations.',
                     ],
                 ],
             ],

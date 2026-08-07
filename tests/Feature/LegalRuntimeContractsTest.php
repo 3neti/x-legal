@@ -7,10 +7,12 @@ namespace LBHurtado\XLegal\Tests\Feature;
 use DateTimeImmutable;
 use InvalidArgumentException;
 use LBHurtado\XLegal\Enums\PolicyDecision;
+use LBHurtado\XLegal\Services\AdvisoryCommercialLegalConstraintEvaluator;
 use LBHurtado\XLegal\Services\AdvisoryLegalConstraintEvaluator;
 use LBHurtado\XLegal\Services\ConfiguredJurisdictionContextResolver;
 use LBHurtado\XLegal\Services\ConfiguredLegalVocabularyResolver;
 use LBHurtado\XLegal\Services\ConfiguredTreasuryPolicyProfileResolver;
+use LBHurtado\XLegal\ValueObjects\CommercialOperationContext;
 use LBHurtado\XLegal\ValueObjects\TreasuryOperationContext;
 use PHPUnit\Framework\TestCase;
 use RecursiveDirectoryIterator;
@@ -100,6 +102,68 @@ final class LegalRuntimeContractsTest extends TestCase
             $this->assertNotSame('', $term->description);
             $this->assertFalse($term->approvedForPublicDisplay);
         }
+    }
+
+    public function test_default_operator_vocabulary_separates_commercial_obligations(): void
+    {
+        /** @var array{profiles: array<string, array<string, mixed>>} $config */
+        $config = require dirname(__DIR__, 2).'/config/x-legal.php';
+        $context = (new ConfiguredJurisdictionContextResolver([
+            'jurisdiction' => 'PH',
+            'legal_entity_reference' => 'entity-ph-001',
+            'profile' => 'treasury-settlement-ph-v1',
+        ]))->resolve();
+        $resolver = new ConfiguredLegalVocabularyResolver($config['profiles']);
+
+        foreach ([
+            'instruction_service_charge' => 'Instruction Service Charge',
+            'commercial_offering' => 'Commercial Offering',
+            'commercial_waterfall' => 'Waterfall',
+            'provider_cost_payable' => 'Provider Cost Payable',
+            'product_revenue' => 'Product Revenue',
+            'partner_commission_payable' => 'Partner Commission Payable',
+            'commercial_revenue' => 'Commercial Revenue',
+            'commission_settlement' => 'Commission Settlement',
+        ] as $key => $label) {
+            $this->assertSame($label, $resolver->resolve($key, $context)->label);
+        }
+    }
+
+    public function test_commercial_operations_remain_advisory_until_the_profile_is_reviewed(): void
+    {
+        $decision = (new AdvisoryCommercialLegalConstraintEvaluator(
+            new ConfiguredTreasuryPolicyProfileResolver($this->profiles()),
+        ))->evaluate($this->commercialOperationContext());
+
+        $this->assertSame(PolicyDecision::ReviewRequired, $decision->decision);
+        $this->assertFalse($decision->permitsExecution());
+        $this->assertSame(
+            ['legal-trace:ph-working-model', 'decision:commercial-waterfall'],
+            $decision->traceReferences,
+        );
+    }
+
+    public function test_reviewed_profiles_must_explicitly_allow_commercial_operations(): void
+    {
+        $profiles = $this->profiles();
+        $profiles['treasury-settlement-ph-v1']['status'] = 'counsel_reviewed';
+        $profiles['treasury-settlement-ph-v1']['effective_at'] = '2026-08-01T00:00:00+08:00';
+        $profiles['treasury-settlement-ph-v1']['decisions'] = [
+            'commercial_offering.activate' => 'allowed',
+        ];
+        $evaluator = new AdvisoryCommercialLegalConstraintEvaluator(
+            new ConfiguredTreasuryPolicyProfileResolver($profiles),
+        );
+
+        $this->assertTrue($evaluator->evaluate(
+            $this->commercialOperationContext('commercial_offering.activate'),
+        )->permitsExecution());
+        $this->assertSame(
+            PolicyDecision::ReviewRequired,
+            $evaluator->evaluate(
+                $this->commercialOperationContext('commercial_commission.settle'),
+            )->decision,
+        );
     }
 
     public function test_draft_profiles_are_advisory_even_when_they_contain_an_allowed_decision(): void
@@ -250,6 +314,30 @@ final class LegalRuntimeContractsTest extends TestCase
             effectiveAt: new DateTimeImmutable($effectiveAt),
             jurisdiction: $jurisdiction,
             traceReferences: ['evidence:netbank:123'],
+        );
+    }
+
+    private function commercialOperationContext(
+        string $operation = 'commercial_offering.activate',
+    ): CommercialOperationContext {
+        $jurisdiction = (new ConfiguredJurisdictionContextResolver([
+            'jurisdiction' => 'PH',
+            'legal_entity_reference' => 'entity-ph-001',
+            'profile' => 'treasury-settlement-ph-v1',
+        ]))->resolve();
+
+        return new CommercialOperationContext(
+            operation: $operation,
+            principalReference: 'principal:system',
+            mandateReference: 'mandate:system:commercial-administration',
+            commercialOfferingReference: 'commercial-offering:pay-code:v4',
+            amountMinor: 2_750,
+            currency: 'php',
+            purpose: 'pay_code_instruction_service_charge',
+            idempotencyKey: 'commercial-offering:pay-code:v4:activate',
+            effectiveAt: new DateTimeImmutable('2026-08-02T00:00:00+08:00'),
+            jurisdiction: $jurisdiction,
+            traceReferences: ['decision:commercial-waterfall'],
         );
     }
 }
