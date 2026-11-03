@@ -76,6 +76,9 @@ without collapsing into one crowded folder.
 
 ## Research
 
+- [DIGITAL_ESCROW_PRODUCT_THESIS.md](./research/DIGITAL_ESCROW_PRODUCT_THESIS.md):
+  initial research outline for a bank-operated digital escrow product powered by
+  x-change; hypotheses and legal characterization remain under evaluation.
 - [ADVERSE_ARGUMENTS.md](./research/ADVERSE_ARGUMENTS.md): skeptical regulatory and
   counterparty arguments to preserve as design inputs.
 - [OPEN_QUESTIONS.md](./research/OPEN_QUESTIONS.md): unresolved questions requiring
